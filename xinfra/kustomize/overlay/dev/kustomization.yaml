@@ -5,4 +5,4 @@ images:
   newName: 553823310165.dkr.ecr.ap-northeast-2.amazonaws.com/cloudladder-repo
   newTag: f249e9145253946c99d896ad62277ecd02fa00ce
 resources:
-- istory-app-deploy.yaml 
+- ../../base
