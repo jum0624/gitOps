@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  istory
+  name:  order
   labels:
-    app:  istory
+    app:  order
 spec:
   selector:
     matchLabels:
-      app: istory
+      app: order
   replicas: 3
   template:
     metadata:
       labels:
-        app:  istory
+        app:  order
     spec:
       containers:
-        - name:  istory
+        - name:  order
           image:  553823310165.dkr.ecr.ap-northeast-2.amazonaws.com/cloudladder-repo:f249e9145253946c99d896ad62277ecd02fa00ce
           envFrom:
             - configMapRef:
-                name: istory-app-config
+                name: order-app-config
           env:
             - name: spring.datasource.password
               valueFrom:
                 secretKeyRef:
-                  name: istory-db-secret
+                  name: order-db-secret
                   key: MYSQL_PASSWORD
             - name: spring.datasource.username
               valueFrom:
                 configMapKeyRef:
-                  name: istory-db-config
+                  name: order-db-config
                   key: MYSQL_USER
           resources:
             requests:
@@ -49,9 +49,9 @@ spec:
             periodSeconds: 10
           ports:
             - containerPort:  3306
-              name:  istory
+              name:  order
       volumes:
         - name: application-config
           configMap:
-            name: istory-app-config
+            name: order-app-config
       restartPolicy: Always

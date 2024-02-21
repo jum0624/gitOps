@@ -1,7 +1,7 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: istory-db-config
+  name: order-db-config
 data:
   MYSQL_DATABASE: 'istory'
   MYSQL_USER: 'cloudwave'
