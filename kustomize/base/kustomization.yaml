@@ -3,9 +3,10 @@ kind: Kustomization
 resources:
 - order-app-config.yaml
 #- order-app-deploy.yaml
-#- order-app-lb.yaml
+- order-app-lb.yaml
 - order-db-config.yaml
 - order-db-secret.yaml
 - rollout-bluegreen.yaml
 - rollout-bluegreen-active.yaml
 - rollout-bluegreen-preview.yaml
+- hpa.yaml
