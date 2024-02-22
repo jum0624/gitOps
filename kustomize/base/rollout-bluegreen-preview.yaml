@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: order
+  name: rollout-bluegreen-preview
 spec:
   selector:
     app: order
