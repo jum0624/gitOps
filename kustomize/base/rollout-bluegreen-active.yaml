@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: rollout-bluegreen-active
+  name: order
 spec:
   selector:
     app: order
@@ -9,5 +9,4 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 8080
-    nodePort: 30081
   type: ClusterIP
