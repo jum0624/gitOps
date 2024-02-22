@@ -4,6 +4,6 @@ images:
 - name: /cloudladder-repo
 - name: 553823310165.dkr.ecr.ap-northeast-2.amazonaws.com/cloudladder-repo
   newName: 553823310165.dkr.ecr.ap-northeast-2.amazonaws.com/cloudladder-repo
-  newTag: 34d60cb8df6d36e4a03386f5736d62c8b5ee4409
+  newTag: 983a8bdbba690960b83f95c1477f1595ac46b0ec
 resources:
 - ../../base
