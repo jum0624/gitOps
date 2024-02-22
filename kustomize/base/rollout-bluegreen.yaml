@@ -14,11 +14,41 @@ spec:
         app: rollout-bluegreen
     spec:
       containers:
-      - name: rollouts-demo
-        image: 553823310165.dkr.ecr.ap-northeast-2.amazonaws.com/cloudladder-repo
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8080
+        - name:  order
+          image:  553823310165.dkr.ecr.ap-northeast-2.amazonaws.com/cloudladder-repo:f249e9145253946c99d896ad62277ecd02fa00ce
+          envFrom:
+            - configMapRef:
+                name: order-app-config
+          env:
+            - name: spring.datasource.password
+              valueFrom:
+                secretKeyRef:
+                  name: order-db-secret
+                  key: MYSQL_PASSWORD
+            - name: spring.datasource.username
+              valueFrom:
+                configMapKeyRef:
+                  name: order-db-config
+                  key: MYSQL_USER
+          resources:
+            requests:
+              cpu: 300m
+              memory: 500Mi
+            limits:
+              cpu: 400m
+              memory: 600Mi
+          readinessProbe:
+            httpGet:
+              path: /actuator
+              port: 8080
+            initialDelaySeconds: 30
+            timeoutSeconds: 3
+            successThreshold: 2
+            failureThreshold: 3
+            periodSeconds: 10
+          ports:
+            - containerPort:  3306
+              name:  order
   strategy:
     blueGreen: 
       activeService: rollout-bluegreen-active
