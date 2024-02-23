@@ -4,9 +4,9 @@ metadata:
   name: hpa-rollout-example
 spec:
   maxReplicas: 6
-  minReplicas: 2
+  minReplicas: 3
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
-    kind: Rollout
-    name: rollout-bluegreen
-  targetCPUUtilizationPercentage: 80
+    kind: Service
+    name: order-lb
+  targetCPUUtilizationPercentage: 70

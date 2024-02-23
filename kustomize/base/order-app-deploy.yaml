@@ -1,17 +1,18 @@
-apiVersion: argoproj.io/v1alpha1     
-kind: Rollout  # Deplyment 대신 Rollout을 사용한다
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: rollout-bluegreen
+  name:  order
+  labels:
+    app:  order
 spec:
-  replicas: 2
-  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: order
+  replicas: 3
   template:
     metadata:
       labels:
-        app: order
+        app:  order
     spec:
       containers:
         - name:  order
@@ -49,9 +50,8 @@ spec:
           ports:
             - containerPort:  3306
               name:  order
-  strategy:
-    blueGreen: 
-      activeService: rollout-bluegreen-active
-      previewService: rollout-bluegreen-preview      
-      #autoPromotioEnabled 옵션은 Blue/Green 배포를 자동으로 진행할 것인지 여부. false 옵션을 사용해 수동으로 지정
-      autoPromotionEnabled: false
+      volumes:
+        - name: application-config
+          configMap:
+            name: order-app-config
+      restartPolicy: Always
