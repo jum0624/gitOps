@@ -8,5 +8,5 @@ spec:
   scaleTargetRef:
     apiVersion: v1
     kind: Service
-    name: order-lb
+    name: order
   targetCPUUtilizationPercentage: 70
